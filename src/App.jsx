@@ -9,6 +9,7 @@ import ProductoDetail from './pages/ProductDetail'
 import Purchases from './pages/Purchases'
 import {useSelector} from 'react-redux'
 import { Container } from 'react-bootstrap'
+import ProtectedRoutes from './components/ProtectedRoutes'
 
 function App() {
 
@@ -23,8 +24,12 @@ function App() {
           {/*CREANDO RUTAS*/}
           <Route path="/" element={<Home/>} />
           <Route path="/product/:id" element = {<ProductoDetail/>}/>
-          <Route path="/purchases" element = {<Purchases/>}/>
           <Route path="/login" element={<Login/>}/>
+
+         {/*CREANDO TOKEN PARA PEDIR LOGUEO SI INGRESA A PURCHASES */} 
+         <Route element={<ProtectedRoutes/>}>
+          <Route path="/purchases" element = {<Purchases/>}/>
+          </Route>
         </Routes>
         </Container>
       </HashRouter>
